@@ -21,10 +21,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     config.vm.hostname = "nos3"
     config.vm.synced_folder "./nos3_filestore", "/tmp/filestore"
+    config.vm.synced_folder "./../", "/home/nos3/Desktop/nos3", owner: "nos3", group: "nos3"
     config.vm.provider "virtualbox" do |vbox|
         vbox.gui = true
         vbox.cpus = 4
-        vbox.memory = "32768"
+        vbox.memory = "8192"
         vbox.customize ["modifyvm", :id, "--vram", 128]
         vbox.customize ["showvminfo", :id]
         vbox.customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'dvddrive', '--medium', 'emptydrive']
