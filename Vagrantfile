@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.hostname = "nos3"
     config.vm.synced_folder "./nos3_filestore", "/tmp/filestore"
     config.vm.synced_folder "./../", "/home/nos3/Desktop/nos3", owner: "nos3", group: "nos3"
+    config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/America/New_York /etc/localtime", run: "always"
     config.vm.provider "virtualbox" do |vbox|
         vbox.gui = true
         vbox.cpus = 4
